@@ -21,7 +21,7 @@ _**Use case 2:**_ &nbsp; &nbsp; So, your organization added a new cluster, and y
     -a is for add.  Kontext will backup existing config file and will merge new-config.yml into ~/.kube/config
 
 
-_**Use case 1:**_ &nbsp; &nbsp; So, you joined a new company, and they have several clusters managed by Rancher.  You collected the "kubeconfig" files from each cluster and saved them in a directory called "all-configs".  Now you want to merge them into your ~/.kube/config file.
+_**Use case 3:**_ &nbsp; &nbsp; So, you joined a new company, and they have several clusters managed by Rancher.  You collected the "kubeconfig" files from each cluster and saved them in a directory called "all-configs".  Now you want to merge them into your ~/.kube/config file.
 
     kontext -d ./all-configs/
 
@@ -30,7 +30,7 @@ _**Use case 1:**_ &nbsp; &nbsp; So, you joined a new company, and they have seve
 
 _**Use case 4:**_ &nbsp; &nbsp; So, you were playing in AWS EKS and no longer need your "my-test-eks" cluster.  And would like to remove that context from "~/.kube/config".
 
-    kontext -f my-test-eks
+    kontext -r my-test-eks
     
     -r is for remove.  Kontext will backup the existing config file and will remove the "cluster" references.  Not sure if there is a kubectl command for this.
 
@@ -39,7 +39,9 @@ _**Use case 5:**_ &nbsp; &nbsp; So, you are working on multiple clusters and wan
 
     kontext 
 
-    View the contexts.  The green one is the current one.  Use arrow keys to switch.  This essentially replaces to commands:
+    View the contexts.  The green one is the current one.  Use arrow keys to switch.  You can do a text search as well.
+    This essentially replaces two kubectl commands:
+
     kubectl config current-context 
     kubectl config use-context my-cluster-name
 
@@ -53,8 +55,16 @@ _**Use case 6:**_ &nbsp; &nbsp; So, you want o work on "kong" name-space for nex
     kontext -n -
 
     "-n -", a 'dash' sets the name-space back to default.  These commands replaces this kubectl command:
+
     kubectl config set-context --current --namespace=kong
 
+<h3>Missing config file</h3>
+
+If your kubeconfig file is not "$USER_HOME/.kube/config" but "/etc/config" then set the "KONTEXT_FILE" env var:
+
+    export KONTEXT_FILE=/etc/config
+
+And then run "kontext"...
 
 <h3> Installation </h3>
 
@@ -66,3 +76,8 @@ You don't have go binary and want the executable (coming soon):
 
     curl -O github.com/ihawke/kontext/binary/kontext_os_arch
 
+<h3> Issues </h3>
+
+Please open an issue.  I'm actively maintaining this repo...
+
+https://github.com/iHawke/kontext/issues

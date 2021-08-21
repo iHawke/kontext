@@ -43,7 +43,7 @@ func TestMerge(t *testing.T) {
 
 func TestDelete(t *testing.T) {
 	path, _ := os.Getwd()
-	inputConfig := path + "/config1-config2-kubectl-merged"
+	inputConfig := path + "/samples/config1-config2-kubectl-merged"
 	mergedConfig, err := pkg.ReadConfig(inputConfig)
 	if err != nil {
 		t.Fatal(err)

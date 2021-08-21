@@ -1,0 +1,40 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: NOTREALd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJeE1EWXhNVEU1TURVeU1RTVNRFV5TUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTExXCnp5VVhOcUhwVUIydm5UODhhRVlRYjE3OXZ4Q3J3V0Z1THZsQmhNRDZuYmFqRGx4ZmVwVHZxTHAvY1ZVeWVtMDkKdE9tV2ZCdEJnNm5YejdFQmNTcjRESk01Mm0veXhSN3VLRTNyK0Z3Mlc3V3Q5MEZGS1gvZWxhTkNhbVZ0Y3gzRwpyZ01UbXVZVVJSZS9ZakFHd1FaZ1BUV3R0NVFPQk4vY2hpNCtWazVpZUhObXhNd1VtUVFhTGFBOFo3bjBjK0NzCmMrSXBMUmZROXplZFdoa2xzL0FBR25qb0pwRllYNlFIVzZtdFloUDA2WDdvVTVYc3NNRVNBc0l3MDVYQVRlSlkKNng4Rk5qN2NMUG53dTh3OEw5SjNqbkJLbzFHZDArYi96TGpaelZDMENmZ2VLWHlMZTlMbUhGbE1VYzU4S0l1cwowZ3dmZ1ViMXhGMHk4U1JhdmxVQ0F3RUFBYU5DTUVBd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZCTHFIVWYwRzN6M0ZobTc0SUx3SlltVVBxZVpNQTBHQ1NxR1NJYjMKRFFFQkN3VUFBNElCQVFBbDluWS93SXEwUk1BcThGUzVHaTN0MXIvTytrUnhqSWZBVHdpN2dVSUw3YUFHeWVoZgoyajZWVDAzc094M0ZFdjdrMW8ySkNxSERSMkNMdHQvK1J5WlpvSTlXbHVPanV1ZUZjSGx5cDRPcVkramhqelhNCmhRUXRXcUFjMDVuTTZMeHdXRnFiS1NjTDE1Y2NnQy8wSVFBeTdZTkc0L1RNUXkxNjg0K0JqRTVjUnRZUUtES3QKYnB4QWo0NmpmR0xKcS9rWjA3ZlIzRmFaOXRkQ0o4cjU3YnVkVHpqNGZCQW9NVXpFckwvaUd6WTlOZjIzNnZVZApIWCtTZzl3ZGVaK245Ymg5QWdLSnhTRVJVRWZkN1FVeCtwRHdUK0lUZXBFTXVEL0lFclRzSDFOUTV6emxERTd5CnNCQTBvU0FiTGd0QmM0RTNyNzRYUCsxNjliVWhWTzVSRzJnOAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    server: https://8A8AC0061536F8EFC5C9CB7D8.gr7.us-east-1.eks.amazonaws.com
+  name: arn:aws:eks:us-east-1:1231716704631:cluster/test
+- cluster:
+    certificate-authority: /Users/ihawke/.minikube/ca.crt
+    server: https://127.0.0.1:55000
+  name: minikube
+contexts:
+- context:
+    cluster: arn:aws:eks:us-east-1:1231716704631:cluster/test
+    user: arn:aws:eks:us-east-1:1231716704631:cluster/test
+  name: arn:aws:eks:us-east-1:1231716704631:cluster/test
+- context:
+    cluster: minikube
+    user: minikube
+  name: minikube
+current-context: cp-cloud-production
+kind: Config
+preferences: {}
+users:
+- name: arn:aws:eks:us-east-1:1231716704631:cluster/test
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      args:
+      - --region
+      - us-east-1
+      - eks
+      - get-token
+      - --cluster-name
+      - test
+      command: aws
+      env: null
+- name: minikube
+  user:
+    client-certificate: /Users/ihawke/.minikube/profiles/minikube/client.crt
+    client-key: /Users/ihawke/.minikube/profiles/minikube/client.key

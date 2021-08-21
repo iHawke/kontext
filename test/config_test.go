@@ -1,7 +1,6 @@
 package test
 
 import (
-	"fmt"
 	"os"
 	"testing"
 
@@ -83,11 +82,13 @@ func TestReadComplexConfig(t *testing.T) {
 }
 
 func TestArray(t *testing.T) {
+	path, _ := os.Getwd()
+	t.Log("Path is: ", path)
 	scores := []int{1,2,3,4,5}
 	slice := scores[2:4]
-	fmt.Println("slice is:", slice)
+	t.Log("slice is:", slice)
 	slice[0] = 999
-	fmt.Println("score is", scores)
+	t.Log("score is", scores)
 	if scores[2] != 999 {
 		t.Fatal("Slice does not match underlining array!")
 	}

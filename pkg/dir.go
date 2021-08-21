@@ -9,11 +9,7 @@ import (
 func Directory() {
 	// Read dir
 	dirName := Args.Dir
-	newConfigs, err := ReadDir(dirName)
-	if err != nil {
-		pwd, _ := os.Getwd()
-		Fatal("Could not read dir [" + dirName + "], PWD [" + pwd + "].  Perhaps try the absolute path. 😨")
-	}
+	newConfigs := ReadDir(dirName)
 
 	// Merge the configs
 	for _, newConfig := range newConfigs {
@@ -23,11 +19,10 @@ func Directory() {
 	Commit(true)
 }
 
-func ReadDir(dirName string) (configs []*Config, err error) {
+func ReadDir(dirName string) (configs []*Config) {
 	files := dir(dirName)
-	// configs := make([]*Config, len(files))
-	j := 0
 	for _, f := range files {
+		Info("Processing [" + f + "]")
 		c, e := ReadConfig(f)
 
 		if e != nil {
@@ -36,8 +31,7 @@ func ReadDir(dirName string) (configs []*Config, err error) {
 			continue
 		}
 
-		configs[j] = c
-		j++
+		configs = append(configs, c)
 	}
 	return
 }
@@ -46,11 +40,15 @@ func dir(dirName string) (ymlFiles []string) {
 	Info("Reading directory [" + dirName + "}")
 	ymlFiles, err := filepath.Glob(dirName + "/*.yml")
 	if err != nil {
-		Fatal(err)
+		pwd, _ := os.Getwd()
+		Error("Could not read dir [" + dirName + "], PWD [" + pwd + "].  Perhaps try the absolute path. 😨")
+		Fatal("Error: " + err.Error())
 	}
 	yamlFiles, err := filepath.Glob(dirName + "/*.yaml")
 	if err != nil {
-		Fatal(err)
+		pwd, _ := os.Getwd()
+		Error("Could not read dir [" + dirName + "], PWD [" + pwd + "].  Perhaps try the absolute path. 😨")
+		Fatal("Error: " + err.Error())
 	}
 	ymlFiles = append(ymlFiles, yamlFiles...)
 
