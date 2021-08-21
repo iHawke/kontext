@@ -27,11 +27,13 @@ const (
 
 func init() {
 	_, err := flags.ParseArgs(&Args, os.Args)
+
 	if err != nil {
 		// Don't exit during test runs
-		if err.Error() != "unknown flag `t'" {
-			os.Exit(1)
+		if err.Error() == "unknown flag `t'" {
+			return
 		}
+		os.Exit(1)
 	}
 
 	defer ReadDefaultConfig()

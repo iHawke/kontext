@@ -1,7 +1,7 @@
 apiVersion: v1
 clusters:
 - cluster:
-    server: https://platform.ecs-np.cloud.cox.com/k8s/clusters/c-b8q26
+    server: https://platform.np.cloud.com/k8s/clusters/c-abcd
   name: ecs-ddtc-riselab-np-b
 - cluster:
     server: https://kube-api.ecs-lab.cloud.cox.com
@@ -22,5 +22,5 @@ preferences: {}
 users:
 - name: ecs-ddtc-riselab-np-b
   user:
-    token: kubeconfig-u-ir5ecm5m6j.c-b8q26:tx2k6x8vdqm456hkk55cbq8n92rkthls26bkph7xlmqtsrwpgfsndx
+    token: kubeconfig-u-ir5ecm5m6j.c-b8q26:tx2k6x8vdqm456hkk55cbq8n92rkthlsabcdabcdabcdabcdabcd
 

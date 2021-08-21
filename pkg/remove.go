@@ -1,10 +1,9 @@
 package pkg
 
 func RemoveContext() {
-	errMsg := ContextExist(Args.Remove)
-	if errMsg != "" {
-		Fatal(errMsg)
+	removed := DeleteContext(Args.Remove)
+
+	if removed {
+		Commit(true)
 	}
-	deleteContext(Args.Remove)
-	Commit(true)
 }

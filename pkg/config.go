@@ -20,7 +20,7 @@ type Cluster struct {
 }
 
 type NamedCluster struct {
-	Cluster `yaml:"cluster,omitempty"`
+	*Cluster `yaml:"cluster,omitempty"`
 	Name    string `yaml:"name"`
 }
 
@@ -31,25 +31,27 @@ type Context struct {
 }
 
 type NamedContext struct {
-	Context `yaml:"context"`
+	*Context `yaml:"context"`
 	Name    string `yaml:"name"`
+}
+
+type Exec  struct {
+	ApiVersion string      `yaml:"apiVersion"`
+	Args       []string    `yaml:"args"`
+	Command    string      `yaml:"command"`
+	Env        interface{} `yaml:"env"`
 }
 
 type User struct {
 	Token             string `yaml:"token,omitempty"`
 	ClientCertificate string `yaml:"client-certificate,omitempty"`
 	ClientKey         string `yaml:"client-key,omitempty"`
-	Exec              struct {
-		ApiVersion string      `yaml:"apiVersion"`
-		Args       []string    `yaml:"args"`
-		Command    string      `yaml:"command"`
-		Env        interface{} `yaml:"env"`
-	} `yaml:"exec,omitempty"`
+	*Exec `yaml:"exec,omitempty"`
 }
 
 type NamedUser struct {
 	Name string `yaml:"name"`
-	User `yaml:"user,omitempty"`
+	*User `yaml:"user,omitempty"`
 }
 
 type Config struct {
@@ -63,19 +65,6 @@ type Config struct {
 
 var DefaultConfig *Config
 var DefaultConfigFileName string
-
-func ReadConfig(configFileName string) (config *Config, err error) {
-	input, err := ioutil.ReadFile(configFileName)
-	if err != nil {
-		return
-	}
-
-	err = yaml.Unmarshal([]byte(input), &config)
-	if err != nil {
-		return
-	}
-	return
-}
 
 func ReadDefaultConfig() {
 	if CMD == NS || CMD == NoArgs {
@@ -108,6 +97,19 @@ func ReadDefaultConfig() {
 	DefaultConfig = config
 }
 
+func ReadConfig(configFileName string) (config *Config, err error) {
+	input, err := ioutil.ReadFile(configFileName)
+	if err != nil {
+		return
+	}
+
+	err = yaml.Unmarshal([]byte(input), &config)
+	if err != nil {
+		return
+	}
+	return
+}
+
 func backup() {
 	baseDir := filepath.Dir(DefaultConfigFileName)
 
@@ -120,13 +122,13 @@ func backup() {
 
 	destination, err := os.Create(backupFile)
 	if err != nil {
-		Fatal("Could not create backup file.  Check permission")
+		Fatal("Could not create backup file. Check permission. Error: " + err.Error())
 	}
 	defer destination.Close()
 
 	_, err = io.Copy(destination, source)
 	if err != nil {
-		msg := fmt.Sprintf("Error creating backup file [%s]!  Permission issue?  Fix and rerun Kontext!", backupFile)
+		msg := fmt.Sprintf("Error creating backup file [%s]! No change was made! Error: [%s]", backupFile, err.Error())
 		Fatal(msg)
 	}
 }

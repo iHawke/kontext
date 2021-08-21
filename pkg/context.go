@@ -1,20 +1,5 @@
 package pkg
 
-func ContextExist(contextName string) (errMsg string) {
-	contexts, _ := ListDefaultContexts()
-
-	found := false
-	for _, v := range contexts {
-		if v == contextName {
-			found = true
-		}
-	}
-	if found == false {
-		errMsg = "Context [" + contextName + "] not found in the config file, typo? 😇"
-	}
-	return
-}
-
 func isNewContext(contextName string) (errMsg string) {
 	contexts, _ := ListDefaultContexts()
 
@@ -49,76 +34,83 @@ func MergeContexts(newConfig *Config) {
 			continue
 		}
 
-		namedContext := getContextByName(nc.Name, newConfig)
-		if namedContext != (NamedContext{}) {
-			DefaultConfig.Contexts = append(DefaultConfig.Contexts, namedContext)
+		namedContext := GetContextByName(nc.Name, newConfig)
+		if namedContext != nil {
+			DefaultConfig.Contexts = append(DefaultConfig.Contexts, *namedContext)
 		}
 
-		namedCluster := getClusterByName(nc.Name, newConfig)
-		if namedCluster != (NamedCluster{}) {
-			DefaultConfig.Clusters = append(DefaultConfig.Clusters, namedCluster)
+		namedCluster := GetClusterByName(nc.Name, newConfig)
+		if namedCluster != nil {
+			DefaultConfig.Clusters = append(DefaultConfig.Clusters, *namedCluster)
 		}
 
-		namedUser := getUserByName(nc.Name, newConfig)
-		if namedUser.Name != "" {
-			DefaultConfig.Users = append(DefaultConfig.Users, namedUser)
+		namedUser := GetUserByName(nc.Name, newConfig)
+		if namedUser != nil {
+			DefaultConfig.Users = append(DefaultConfig.Users, *namedUser)
 		}
 		Info("Added context [" + nc.Name + "]")
 	}
 }
 
-func deleteContext(deleteContext string) {
+func DeleteContext(deleteContext string) bool {
 	Info("Removing context [" + deleteContext + "]")
-	for index, nc := range DefaultConfig.Contexts {
+	removed := false
+	for i, nc := range DefaultConfig.Contexts {
 		if nc.Name == deleteContext {
-			DefaultConfig.Contexts = append(DefaultConfig.Contexts[:index], DefaultConfig.Contexts[index+1:]...)
-			break
+			DefaultConfig.Contexts = append(DefaultConfig.Contexts[:i], DefaultConfig.Contexts[i+1:]...)
+			removed = true
 		}
 	}
 
-	for index, nc := range DefaultConfig.Clusters {
+	for i, nc := range DefaultConfig.Clusters {
 		if nc.Name == deleteContext {
-			DefaultConfig.Clusters = append(DefaultConfig.Clusters[:index], DefaultConfig.Clusters[index+1:]...)
-			break
+			DefaultConfig.Clusters = append(DefaultConfig.Clusters[:i], DefaultConfig.Clusters[i+1:]...)
+			removed = true
 		}
 	}
 
-	for index, nu := range DefaultConfig.Clusters {
+	for i, nu := range DefaultConfig.Clusters {
 		if nu.Name == deleteContext {
-			DefaultConfig.Users = append(DefaultConfig.Users[:index], DefaultConfig.Users[index+1:]...)
-			break
+			DefaultConfig.Users = append(DefaultConfig.Users[:i], DefaultConfig.Users[i+1:]...)
+			removed = true
 		}
 	}
+
+	if removed == false {
+		Warn("Context [" + deleteContext + "] not found in the config file, typo? 😇")
+	}
+
+	return removed
 }
 
-func getContextByName(cName string, config *Config) NamedContext {
+func GetContextByName(cName string, config *Config) *NamedContext {
 	for _, nc := range config.Contexts {
 		if nc.Name == cName {
-			return nc
+			return &nc
 		}
 	}
 
-	return NamedContext{}
+	return nil
 }
 
-func getClusterByName(cName string, config *Config) NamedCluster {
+func GetClusterByName(cName string, config *Config) *NamedCluster {
 	for _, nc := range config.Clusters {
 		if nc.Name == cName {
-			return nc
+			return &nc
 		}
 	}
 
-	return NamedCluster{}
+	return nil
 }
 
-func getUserByName(cName string, config *Config) NamedUser {
+func GetUserByName(cName string, config *Config) *NamedUser {
 	for _, nu := range config.Users {
 		if nu.Name == cName {
-			return nu
+			return &nu
 		}
 	}
 
-	return NamedUser{}
+	return nil
 }
 
 func addNamespace() {
