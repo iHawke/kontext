@@ -74,7 +74,13 @@ You have the go-lang binary:
 
 You don't have go binary and want the executable:
 
-    curl -O github.com/ihawke/kontext/binary/kontext_os_arch
+    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-OS-ARCH
+
+    Where OS-ARCH in:  darwin-amd64, darwin-arm64, windows-386.exe, windows-amd64.exe, linux-386, linux-amd64, linux-arm64, openbsd-386, openbsd-amd64
+    For mac amd the command will be:
+
+    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-darwin-amd64
+
 
 <h3> Issues </h3>
 
