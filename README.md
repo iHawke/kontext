@@ -17,9 +17,9 @@ _**Use case 1:**_ &nbsp; You have a new cluster that you want to explore.  And y
     -p is for paste. Kontext will backup existing config file and will append the new-config.yml from clip-board to ~/.kube/config
 
     This essentially replaces these commands:
-    1. pbpaste > ~/.kube/new-file.yml
-    2. cp ~/.kube/config ~/.kube/config.YYYY-MM-DDTHH:MI:SS
-    3. KUBECONFIG=~/.kube/config:~/.kube/new-file.yml kubectl config view --flatten > ~/.kube/config
+    - pbpaste > ~/.kube/new-file.yml
+    - cp ~/.kube/config ~/.kube/config.YYYY-MM-DDTHH:MI:SS
+    - KUBECONFIG=~/.kube/config:~/.kube/new-file.yml kubectl config view --flatten > ~/.kube/config
 
 
 _**Use case 2:**_ &nbsp; So, your organization added a new cluster, and you were given the "kubeconfig" yaml for that cluster.  Now you want to add the context to your "~/.kube/config" file.
@@ -29,8 +29,8 @@ _**Use case 2:**_ &nbsp; So, your organization added a new cluster, and you were
     -f is for file. Kontext will backup existing config file and will append new-config.yml into ~/.kube/config
 
     This essentially replaces these commands:
-    1. cp ~/.kube/config ~/.kube/config.YYYY-MM-DDTHH:MI:SS
-    2. KUBECONFIG=~/.kube/config:~/.kube/new-config.yml kubectl config view --flatten > ~/.kube/config
+    - cp ~/.kube/config ~/.kube/config.YYYY-MM-DDTHH:MI:SS
+    - KUBECONFIG=~/.kube/config:~/.kube/new-config.yml kubectl config view --flatten > ~/.kube/config
 
 
 _**Use case 3:**_ &nbsp; So, you joined a new company, and they have several clusters managed by Rancher.  You collected the "kubeconfig" files from each cluster and saved them in a directory called "all-configs".  Now you want to merge them into your ~/.kube/config file.
@@ -56,8 +56,8 @@ _**Use case 5:**_ &nbsp; So, you are working on multiple clusters and want to sw
     View the contexts. The green one is the current context.  Use arrow keys to switch. Or you can do a text search as well.
     This essentially replaces two kubectl commands:
 
-    kubectl config current-context 
-    kubectl config use-context my-cluster-name
+    - kubectl config current-context 
+    - kubectl config use-context my-cluster-name
 
 
 _**Use case 6:**_ &nbsp; So, you want o work on "kong" name-space for next 1 hour.
@@ -105,8 +105,8 @@ You don't have go-lang binary and want the executable:
     For most windows amd the command will be (please add .exe after downloading):
     curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-windows-amd64
 
-<h3> Issues </h3>
+<h3> Issues/Features: </h3>
 
-Please open an issue.  I'm actively maintaining this repo...
+Please open an issue or a feature request here:  https://github.com/iHawke/kontext/issues
 
-https://github.com/iHawke/kontext/issues
+I'll be happy to look into them.
