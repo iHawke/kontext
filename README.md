@@ -1,3 +1,6 @@
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+![](./image/kontext.gif?raw=true "")
+
 <h1>Kontext:</h1>
 
 Every "kubectl" command needs a kubeconfig file to know which cluster to execute to command on.  The default kubeconfig is: "$HOME/.kube/config".  Alternatively some folks uses multiple kubeconfig files if the cluster is very small and/or if they have very good memory!
@@ -11,7 +14,7 @@ _**Use case 1:**_ &nbsp; You have a new cluster that you want to explore.  And y
 
     kontext -p 
 
-    -p is for paste.  Kontext will backup existing config file and will append the new-config.yml from clip-board to ~/.kube/config
+    -p is for paste. Kontext will backup existing config file and will append the new-config.yml from clip-board to ~/.kube/config
 
     This essentially replaces these commands:
     1. pbpaste > ~/.kube/new-file.yml
@@ -23,30 +26,34 @@ _**Use case 2:**_ &nbsp; So, your organization added a new cluster, and you were
 
     kontext -a new-config.yml
 
-    -a is for add.  Kontext will backup existing config file and will append new-config.yml into ~/.kube/config
+    -a is for add. Kontext will backup existing config file and will append new-config.yml into ~/.kube/config
 
     This essentially replaces these commands:
     1. cp ~/.kube/config ~/.kube/config.YYYY-MM-DDTHH:MI:SS
     2. KUBECONFIG=~/.kube/config:~/.kube/new-config.yml kubectl config view --flatten > ~/.kube/config
 
+
 _**Use case 3:**_ &nbsp; So, you joined a new company, and they have several clusters managed by Rancher.  You collected the "kubeconfig" files from each cluster and saved them in a directory called "all-configs".  Now you want to merge them into your ~/.kube/config file.
 
     kontext -d ./all-configs/
 
-    -d is for directory.  Kontext will backup the existing config file and add all the ".yaml" or ".yml" files found in "all-configs" folder and merges them into ~/.kube/config
+    -d is for directory. Kontext will backup the existing config file and add all the ".yaml" or ".yml" files found in 
+    "all-configs" folder and merges them into ~/.kube/config
+
 
 _**Use case 4:**_ &nbsp; So, you were playing in AWS EKS and no longer need your "my-test-eks" cluster.  And would like to remove that context from "~/.kube/config".
 
     kontext -r my-test-eks
     
-    -r is for remove.  Kontext will backup the existing config file and will remove the "cluster" references.  Not sure if there is a kubectl command for this.
+    -r is for remove. Kontext will backup the existing config file and will remove the "cluster" references.  
+    Not sure if there is a comparable kubectl command for this.
 
 
 _**Use case 5:**_ &nbsp; So, you are working on multiple clusters and want to switch to "staging-b".
 
     kontext 
 
-    View the contexts.  The green one is the current one.  Use arrow keys to switch.  You can do a text search as well.
+    View the contexts. The green one is the current context.  Use arrow keys to switch. Or you can do a text search as well.
     This essentially replaces two kubectl commands:
 
     kubectl config current-context 
@@ -64,6 +71,7 @@ _**Use case 6:**_ &nbsp; So, you want o work on "kong" name-space for next 1 hou
     "-n -", a 'dash' sets the name-space back to default.  These commands replaces this kubectl command:
 
     kubectl config set-context --current --namespace=kong
+
 
 <h3>Missing config file error:</h3>
 
