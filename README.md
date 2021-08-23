@@ -13,6 +13,11 @@ _**Use case 1:**_ &nbsp; You have a new cluster that you want to explore.  And y
 
     -p is for paste.  Kontext will backup existing config file and will append the new-config.yml from clip-board to ~/.kube/config
 
+    This essentially replaces these commands:
+    1. pbpaste > ~/.kube/new-file.yml
+    2. cp ~/.kube/config ~/.kube/config.YYYY-MM-DDTHH:MI:SS
+    3. KUBECONFIG=~/.kube/config:~/.kube/new-file.yml kubectl config view --flatten > ~/.kube/config
+
 
 _**Use case 2:**_ &nbsp; So, your organization added a new cluster, and you were given the "kubeconfig" yaml for that cluster.  Now you want to add the context to your "~/.kube/config" file.
 
@@ -20,13 +25,15 @@ _**Use case 2:**_ &nbsp; So, your organization added a new cluster, and you were
 
     -a is for add.  Kontext will backup existing config file and will append new-config.yml into ~/.kube/config
 
+    This essentially replaces these commands:
+    1. cp ~/.kube/config ~/.kube/config.YYYY-MM-DDTHH:MI:SS
+    2. KUBECONFIG=~/.kube/config:~/.kube/new-config.yml kubectl config view --flatten > ~/.kube/config
 
 _**Use case 3:**_ &nbsp; So, you joined a new company, and they have several clusters managed by Rancher.  You collected the "kubeconfig" files from each cluster and saved them in a directory called "all-configs".  Now you want to merge them into your ~/.kube/config file.
 
     kontext -d ./all-configs/
 
     -d is for directory.  Kontext will backup the existing config file and add all the ".yaml" or ".yml" files found in "all-configs" folder and merges them into ~/.kube/config
-
 
 _**Use case 4:**_ &nbsp; So, you were playing in AWS EKS and no longer need your "my-test-eks" cluster.  And would like to remove that context from "~/.kube/config".
 
@@ -58,7 +65,7 @@ _**Use case 6:**_ &nbsp; So, you want o work on "kong" name-space for next 1 hou
 
     kubectl config set-context --current --namespace=kong
 
-<h3>Missing config file</h3>
+<h3>Missing config file error:</h3>
 
 Let us say your kubeconfig file is: "/etc/config" instead of "$USER_HOME/.kube/config" then set the "KONTEXT_FILE" env var like this:
 
@@ -66,21 +73,29 @@ Let us say your kubeconfig file is: "/etc/config" instead of "$USER_HOME/.kube/c
 
 And then run "kontext" so kontext knows what file to work on.
 
-<h3> Installation </h3>
+<h3> Installation: </h3>
 
 You have the go-lang binary:
 
     go install github.com/ihawke/kontext
 
-You don't have go binary and want the executable:
+You don't have go-lang binary and want the executable:
 
     curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-OS-ARCH
 
     Where OS-ARCH in:  darwin-amd64, darwin-arm64, windows-386.exe, windows-amd64.exe, linux-386, linux-amd64, linux-arm64, openbsd-386, openbsd-amd64
-    For mac amd the command will be:
 
+    So, for most Mac amd the command will be:
     curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-darwin-amd64
 
+    So, for Mac Applie Silicon the command will be:
+    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-darwin-arm64
+
+    For most linux amd the command will be:
+    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-linux-amd64
+
+    For most windows amd the command will be:
+    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-windows-amd64.exe
 
 <h3> Issues </h3>
 

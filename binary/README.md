@@ -1,12 +1,20 @@
-<h3>You don't have go binary and want the executable:</h3>
+<h3>You don't have go-lang binary and want the executable:</h3>
 
     curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-OS-ARCH
 
     Where OS-ARCH in:  darwin-amd64, darwin-arm64, windows-386.exe, windows-amd64.exe, linux-386, linux-amd64, linux-arm64, openbsd-386, openbsd-amd64
-    So, for mac amd the command will be:
 
+    So, for most Mac amd the command will be:
     curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-darwin-amd64
 
+    So, for Mac Applie Silicon the command will be:
+    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-darwin-arm64
+
+    For most linux amd the command will be:
+    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-linux-amd64
+
+    For most windows amd the command will be:
+    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-windows-amd64.exe
 
 <h3>What is the error "identity of the developer cannot be confirmed"?</h3>
 
