@@ -13,8 +13,8 @@
     For most linux amd the command will be:
     curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-linux-amd64
 
-    For most windows amd the command will be:
-    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-windows-amd64.exe
+    For most windows amd the command will be (please add .exe after downloading):
+    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-windows-amd64
 
 <h3>What is the error "identity of the developer cannot be confirmed"?</h3>
 
