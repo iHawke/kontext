@@ -24,9 +24,9 @@ _**Use case 1:**_ &nbsp; You have a new cluster that you want to explore.  And y
 
 _**Use case 2:**_ &nbsp; So, your organization added a new cluster, and you were given the "kubeconfig" yaml for that cluster.  Now you want to add the context to your "~/.kube/config" file.
 
-    kontext -a new-config.yml
+    kontext -f new-config.yml
 
-    -a is for add. Kontext will backup existing config file and will append new-config.yml into ~/.kube/config
+    -f is for file. Kontext will backup existing config file and will append new-config.yml into ~/.kube/config
 
     This essentially replaces these commands:
     1. cp ~/.kube/config ~/.kube/config.YYYY-MM-DDTHH:MI:SS
