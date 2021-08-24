@@ -8,7 +8,7 @@ import (
 
 var RED = "\033[31m"
 var GREEN = "\033[32m"
-var YELLOW = "\033[33m\t"
+var YELLOW = "\033[33m   "
 var CLEAR = "\033[0m"
 
 var IS_DEBUG = true

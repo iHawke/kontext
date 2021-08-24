@@ -15,7 +15,7 @@ func NoArgsRun() {
 		Options: contexts,
 		Default: currentContext,
 	}
-	survey.AskOne(prompt, &newContext)
+	survey.AskOne(prompt, &newContext, survey.WithPageSize(10))
 
 	if newContext != "" && DefaultConfig.CurrentContext != newContext {
 		DefaultConfig.CurrentContext = newContext

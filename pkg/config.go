@@ -54,9 +54,13 @@ type NamedUser struct {
 	*User `yaml:"user,omitempty"`
 }
 
+type Preferences struct {
+}
+
 type Config struct {
 	ApiVersion     string         `yaml:"apiVersion"`
 	Kind           string         `yaml:"kind"`
+	Preferences    Preferences    `yaml:"preferences"`
 	Clusters       []NamedCluster `yaml:"clusters,omitempty"`
 	Contexts       []NamedContext `yaml:"contexts"`
 	CurrentContext string         `yaml:"current-context"`

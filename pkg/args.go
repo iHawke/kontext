@@ -12,7 +12,7 @@ var Args struct {
 	Paste  bool   `short:"p" long:"paste" description:"Adds context from clipboard"`
 	File   string `short:"f" long:"file" description:"Adds the context from the given FILE" value-name:"FILE"`
 	Dir    string `short:"d" long:"directory" description:"Adds the contexts from yaml files in the given DIR" value-name:"DIR"`
-	Remove string `short:"r" long:"remove" description:"Removes CONTEXT-NAME from the config" value-name:"CONTEXT-NAME"`
+	Remove string `short:"r" long:"remove" description:"Removes the given CONTEXT-NAME from the config" value-name:"CONTEXT-NAME"`
 	NS     string `short:"n" long:"namespace" description:"Sets the given NAMESPACE as the default ns" value-name:"NAMESPACE"`
 }
 

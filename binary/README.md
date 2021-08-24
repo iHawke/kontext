@@ -1,20 +1,27 @@
 <h3>You don't have go-lang binary and want the executable:</h3>
 
-    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-OS-ARCH
+Download the binary based on your OS architecture. Like so:
 
-    Where OS-ARCH in:  darwin-amd64, darwin-arm64, windows-386.exe, windows-amd64.exe, linux-386, linux-amd64, linux-arm64, openbsd-386, openbsd-amd64
+    curl -o kontext -L https://github.com/iHawke/kontext/raw/main/binary/kontext-OS-ARCH
 
-    So, for most Mac amd the command will be:
-    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-darwin-amd64
+Where OS-ARCH in:  darwin-amd64, darwin-arm64, windows-386.exe, windows-amd64.exe, linux-386, linux-amd64, linux-arm64, openbsd-386, openbsd-amd64.
+Don't forget to chmod _kontext_.
 
-    So, for Mac Applie Silicon the command will be:
-    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-darwin-arm64
+So, for most Mac amd the command will be:
 
-    For most linux amd the command will be:
-    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-linux-amd64
+    curl -o konext -L https://github.com/iHawke/kontext/raw/main/binary/kontext-darwin-amd64
 
-    For most windows amd the command will be (please add .exe after downloading):
-    curl -OL https://github.com/iHawke/kontext/raw/main/binary/kontext-windows-amd64
+So, for Mac Applie Silicon the command will be:
+
+    curl -o kontext -L https://github.com/iHawke/kontext/raw/main/binary/kontext-darwin-arm64
+
+For most linux amd the command will be:
+
+    curl -o kontext -L https://github.com/iHawke/kontext/raw/main/binary/kontext-linux-amd64
+
+For most windows amd the command will be (please add .exe after downloading):
+
+    curl -o kontext -L https://github.com/iHawke/kontext/raw/main/binary/kontext-windows-amd64
 
 <h3>What is the error "identity of the developer cannot be confirmed"?</h3>
 

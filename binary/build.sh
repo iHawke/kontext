@@ -19,9 +19,9 @@ do
     GOOS=${platform_split[0]}
     GOARCH=${platform_split[1]}
     OUT=$package'-'$GOOS'-'$GOARCH
-    if [ "$GOOS" = "windows" ]; then
-        OUT+='.exe'
-    fi
+    # if [ "$GOOS" = "windows" ]; then
+    #     OUT+='.exe'
+    # fi
     echo "Building [$OUT]"
     env GOOS="$GOOS" GOARCH="$GOARCH" go build -o ../binary/$OUT "$package".go
     if [ $? -ne 0 ]; then
