@@ -98,7 +98,7 @@ Don't forget to chmod _kontext_.
 
 So, for most Mac amd the command will be:
 
-    curl -o konext -L https://github.com/iHawke/kontext/raw/main/binary/kontext-darwin-amd64
+    curl -o kontext -L https://github.com/iHawke/kontext/raw/main/binary/kontext-darwin-amd64
 
 So, for Mac Applie Silicon the command will be:
 
