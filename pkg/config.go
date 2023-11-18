@@ -21,7 +21,7 @@ type Cluster struct {
 
 type NamedCluster struct {
 	*Cluster `yaml:"cluster,omitempty"`
-	Name    string `yaml:"name"`
+	Name     string `yaml:"name"`
 }
 
 type Context struct {
@@ -32,10 +32,10 @@ type Context struct {
 
 type NamedContext struct {
 	*Context `yaml:"context"`
-	Name    string `yaml:"name"`
+	Name     string `yaml:"name"`
 }
 
-type Exec  struct {
+type Exec struct {
 	ApiVersion string      `yaml:"apiVersion"`
 	Args       []string    `yaml:"args"`
 	Command    string      `yaml:"command"`
@@ -43,14 +43,16 @@ type Exec  struct {
 }
 
 type User struct {
-	Token             string `yaml:"token,omitempty"`
-	ClientCertificate string `yaml:"client-certificate,omitempty"`
-	ClientKey         string `yaml:"client-key,omitempty"`
-	*Exec `yaml:"exec,omitempty"`
+	Token                 string `yaml:"token,omitempty"`
+	ClientCertificate     string `yaml:"client-certificate,omitempty"`
+	ClientKey             string `yaml:"client-key,omitempty"`
+	ClientCertificateData string `yaml:"client-certificate-data,omitempty"`
+	ClientKeyData         string `yaml:"client-key-data,omitempty"`
+	*Exec                 `yaml:"exec,omitempty"`
 }
 
 type NamedUser struct {
-	Name string `yaml:"name"`
+	Name  string `yaml:"name"`
 	*User `yaml:"user,omitempty"`
 }
 
