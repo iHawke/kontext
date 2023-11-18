@@ -7,7 +7,7 @@ Every "kubectl" command needs a kubeconfig file to know which cluster to execute
 
 I don't have good memory.  So, **Kontext** helps me manage the default kubeconfig file better.  The use-cases are listed below...
 
-BTW, to find out more about kubeconfig files, please read [this documentation](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
+BTW, to find out more about kubeconfig files, please read [this](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
 
 _**Use case 1:**_ &nbsp; You have a new cluster that you want to explore.  And you just copied a "kubeconfig" yaml for that new cluster from rancher or somewhere to your clipboard.  Now you want to merge that context to your "~/.kube/config" file.
@@ -60,7 +60,7 @@ _**Use case 5:**_ &nbsp; So, you are working on multiple clusters and want to sw
     - kubectl config use-context my-cluster-name
 
 
-_**Use case 6:**_ &nbsp; So, you want o work on "kong" name-space for next 1 hour.
+_**Use case 6:**_ &nbsp; So, you want to work on "kong" name-space for next 1 hour.
 
     kontext -n kong
 
@@ -83,7 +83,7 @@ And then run "kontext" so kontext knows what file to work on.
 
 <h3> Installation: </h3>
 
-You have the go-lang binary:
+You have the go-lang binary and kontext source:
 
     go install github.com/ihawke/kontext
 
@@ -94,7 +94,7 @@ Download the binary based on your OS architecture. Like so:
     curl -o kontext -L https://github.com/iHawke/kontext/raw/main/binary/kontext-OS-ARCH
 
 Where OS-ARCH in:  darwin-amd64, darwin-arm64, windows-386.exe, windows-amd64.exe, linux-386, linux-amd64, linux-arm64, openbsd-386, openbsd-amd64.  
-Don't forget to chmod _kontext_.
+Don't forget to chmod _kontext_.  And move it to folder that's in PATH (such as /usr/local/bin)
 
 So, for most Mac amd the command will be:
 
